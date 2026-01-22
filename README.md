@@ -1,4 +1,4 @@
-# industrial-monitoring-grafana
+# Industrial-monitoring-grafana
 Data-driven monitoring and digital solution for industrial time-series data for SOEC
 
 # Stack Health Monitoring & Reliability Assessment for SOEC Electrolysis Systems
