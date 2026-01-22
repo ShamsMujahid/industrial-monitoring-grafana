@@ -57,8 +57,9 @@ The monitoring and alarm concepts are implemented using **Grafana**, enabling:
 - Operator-oriented dashboards supporting transparent system assessment
 
 ### Dashboard Example
-![SOEC Monitoring Dashboard](screenshots/overview.png)
+![SOEC Monitoring Dashboard](screenshots/Screenshot 2026-01-22 011955.png)
+![SOEC Monitoring Dashboard](screenshots/Screenshot 2026-01-22 012018.png)
+![SOEC Monitoring Dashboard](screenshots/Screenshot 2026-01-22 013227.png)
 
 ---
 
-## System Architecture
