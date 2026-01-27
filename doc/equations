@@ -1,1 +1,26 @@
+# Electrolyser Core Model Equations
+
+## Reversible Voltage
+The reversible cell voltage is derived from thermodynamic principles,
+relating Gibbs free energy of water splitting to the minimum required
+electrical voltage. A linearized temperature-dependent formulation is used:
+
+E_rev(T) = E0 + alpha (T - T0)
+
+## Ohmic Loss
+Ohmic voltage losses are modeled as:
+
+eta_ohm = I · R(T)
+
+with a temperature-dependent resistance:
+
+R(T) = R0(t) · exp(beta (T - T0))
+
+## Aging Model
+Resistance degradation is represented by a current-dependent aging state:
+
+dR0/dt = k_deg · |I|
+
+This formulation enables simulation of cumulative aging effects under
+dynamic load profiles.
 
