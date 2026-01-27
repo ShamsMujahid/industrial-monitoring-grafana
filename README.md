@@ -1,65 +1,74 @@
-# Industrial-monitoring-grafana
-Data-driven monitoring and digital solution for industrial time-series data for SOEC
-
-# Stack Health Monitoring & Reliability Assessment for SOEC Electrolysis Systems
+# Electrolyser Digital Twin – Core Simulink Models
 
 ## Overview
-This project presents a **data-driven condition monitoring and reliability assessment framework** for **Solid Oxide Electrolysis Cell (SOEC) stacks** operating under dynamic industrial conditions. The focus is on detecting early degradation, abnormal operating behavior, and reliability risks using electrical and operational time-series data.
 
-High-temperature electrolysis systems are exposed to significant thermal and electrical stress, particularly during **transient load changes**. Reliable monitoring solutions are therefore essential to ensure safe operation, minimize downtime, and support predictive maintenance strategies.
+This repository contains foundational **system-level Simulink models** for an **electrolyser digital twin**.  
+The focus is on **physically interpretable core sub-models** that serve as the basis for:
 
----
+- Electrochemical performance simulation  
+- Thermal coupling  
+- Aging and degradation analysis  
 
-## Problem Statement
-SOEC stacks operate under harsh conditions involving:
-- High temperatures
-- Dynamic electrical loads
-- Frequent operating transients
-
-These conditions can accelerate degradation mechanisms that are not immediately visible through raw sensor signals. Traditional threshold-based monitoring is often insufficient to distinguish between **nominal transient behavior** and **early signs of abnormal operation or degradation**.
-
-The goal of this project is to develop a **robust, data-driven monitoring concept** that:
-- Separates normal operational variability from abnormal behavior
-- Detects early reliability risks
-- Supports operator-oriented decision-making
+The current implementation includes **thermodynamic reversible voltage modeling** and **temperature-dependent ohmic loss modeling with explicit aging dynamics**.  
+All models are designed in a **modular and extensible** manner to support future expansion toward full electrolyser system simulations.
 
 ---
 
-## Methodology
+## Implemented Models
 
-### Data Analysis
-- Analysis of **real-time electrical and operational time-series data**, including current and voltage signals
-- Evaluation of system response during **transient load changes** and stress scenarios
-- Focus on identifying patterns indicative of degradation or abnormal stack behavior
+### Reversible Voltage Model
+- Derived from Gibbs free energy of water splitting  
+- Linearized temperature dependence  
+- Suitable for system-level and control-oriented simulations  
 
-### Reference Model
-- Development of a **rolling median–based reference model** to represent nominal system behavior
-- The rolling median provides robustness against noise and short-term fluctuations
-- Residuals between measured signals and the reference model are used as health indicators
-
-### Anomaly Detection & Reliability Assessment
-- Calculation of **residual signals** to isolate abnormal electrical behavior
-- Definition of **rule-based alarm logic** based on residual trends, magnitude, and persistence
-- Detection targets:
-  - Early degradation indicators
-  - Abnormal operating conditions
-  - Potential reliability risks affecting stack lifetime
+### Ohmic Loss Model with Aging
+- Temperature-dependent electrical resistance  
+- Continuous-time aging state driven by absolute stack current  
+- Enables degradation analysis under dynamic operating conditions  
 
 ---
 
-## Monitoring & Visualization
+## Model Structure
 
-The monitoring and alarm concepts are implemented using **Grafana**, enabling:
+The models are implemented within a **single top-level Simulink file** using clearly separated subsystems:
 
-- Real-time visualization of electrical and operational KPIs
-- Residual-based health indicators
-- Rule-based alarm states for early intervention
-- Operator-oriented dashboards supporting transparent system assessment
+- `ReversibleVoltageModel`
+- `OhmicLossModel`
 
-### Dashboard Example
-![SOEC Monitoring Dashboard - Electrical Parameters](screenshots/Screenshot 2026-01-22 011955.png)
-![SOEC Monitoring Dashboard - Electrical Parameters (Input Current Transient)](screenshots/Screenshot 2026-01-22 012018.png)
-![SOEC Monitoring Dashboard - Residual Plot](screenshots/Screenshot 2026-01-22 013227.png)
+All physical parameters are defined **externally** to ensure:
+- Transparency  
+- Reproducibility  
+- Ease of parameter studies  
 
 ---
+
+## Applications
+
+- Electrolyser system-level simulation  
+- Aging and degradation studies  
+- Digital twin research  
+- Power-to-X and hydrogen system modeling  
+
+---
+
+## Planned Extensions
+
+- Hydrogen production model (Faraday-based)  
+- Lumped thermal dynamics  
+- Activation and concentration losses  
+- Validation against experimental measurement data  
+
+---
+
+## How to Run
+
+1. Open **MATLAB**
+2. Set the repository as the working directory
+3. Run the parameter script:
+   ```matlab
+   scripts/script_Electrolyzers.m
+4. Open the Simulink mode:
+   ```matlab
+   model/Electrolyzer.slx
+5. Run the simulation.
 
